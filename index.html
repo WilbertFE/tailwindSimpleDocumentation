@@ -6,6 +6,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           fontFamily:{
@@ -27,8 +28,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400;600;900&display=swap" rel="stylesheet">
+
+    <style type="text/tailwindcss">
+        #toggle:checked ~ label div.toggle-circle {
+            @apply translate-x-4;
+        }
+    </style>
+
 </head>
-<body class="font-inter bg-slate-200">
+<body class="font-inter bg-slate-200 dark:bg-slate-800 dark:text-slate-200">
 
     <div class="p-3 w-full max-w-screen-sm mt-5 mx-auto">
 
@@ -44,7 +52,7 @@
         </div>
 
         <div class="w-full text-center mb-80">
-            <h1 class="font-black text-5xl text-slate-900 mb-8">
+            <h1 class="font-black text-5xl text-slate-900 mb-8 dark:text-slate-100">
                 Apa itu TailwindCSS?
             </h1>
             <div class="w-[300px] h-[200px] bg-slate-200/50 mx-auto mb-3 bg-cover" style="background-image: url(img/logo2.png);">
@@ -56,12 +64,12 @@
         </div>
 
         <div class="w-full text-center mb-80">
-            <h1 class="font-black text-5xl mb-8 text-slate-900">
+            <h1 class="font-black text-5xl mb-8 text-slate-900 dark:text-slate-100">
                 Pencipta TailwindCSS?
             </h1>
             <div class="w-[300px] h-[350px] bg-slate-900 mx-auto text-white capitalize rounded-lg overflow-hidden group hover:cursor-pointer">
                 
-                <div class="w-full h-[200px] bg-cover bg-right bg-no-repeat border-b-2 border-slate-300 group-hover:opacity-80" style="background-image: url(img/adam.png);">
+                <div class="w-full h-[200px] bg-cover bg-right bg-no-repeat border-b-2 border-slate-300 group-hover:opacity-90" style="background-image: url(img/adam.png);">
 
                 </div>
                 <h1 class="text-3xl font-semibold mb-2">Adam Wathan</h1>
@@ -71,7 +79,7 @@
         </div>
 
         <div class="w-full text-center mb-80 capitalize">
-            <h1 class="font-black text-5xl text-slate-900 mb-8">
+            <h1 class="font-black text-5xl text-slate-900 mb-8 dark:text-slate-100">
                 Mengapa Tailwind?
             </h1>
             <h2 class="text-lg mb-5">
@@ -84,7 +92,8 @@
             </ul>
         </div>
 
-        <div class="w-[400px] px-3 py-5 bg-white mb-48 mx-auto rounded-md shadow-lg">
+        <div class="w-[400px] px-3 py-5 bg-white mb-48 mx-auto rounded-md shadow-lg dark:bg-slate-900 dark:text-slate-100">
+
         <h1 class="text-xl font-semibold mb-2">
             My Card
         </h1>
@@ -93,27 +102,60 @@
         </p>
         </div>
 
-        <div class="w-[400px] p-3 bg-white mx-auto shadow">
+        <div class="w-[400px] p-3 bg-white mx-auto shadow dark:bg-slate-900">
             <form class="w-full">
-                <label for="email">
-                <span class="font-semibold text-xl text-slate-700">Email</span>
-                <input type="email" id="email" placeholder="masukkan email..." class="w-full border text-sm p-1 rounded-[4px] shadow placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500">
-                </label>
+
+                <span class="font-semibold text-xl text-slate-700 after:content-['*'] after:text-red-500 after:ml-0.5 dark:text-slate-100">
+                    Email
+                </span>
+
+                <input type="email" id="email" placeholder="masukkan email..." class="w-full border text-sm p-1 rounded-[4px] shadow placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 invalid:text-pink-700 invalid:focus:ring-pink-700 invalid:focus:border-pink-700 peer text-slate-900">
+                
+                <p class="text-sm m-1 text-pink-700 hidden peer-invalid:block">email tidak valid</p>
             </form>
+        </div>
+
+        <div class="flex justify-center mt-20">
+            <span class="text-sm text-slate-500 mr-2">
+                Light
+            </span>
+
+            <input type="checkbox" id="toggle" class="hidden" />
+
+            <label for="toggle">
+                <div class="w-9 h-5 rounded-full bg-slate-500 flex items-center p-px cursor-pointer">
+
+                    <div class="w-4 h-4 bg-white rounded-full toggle-circle"></div>
+
+                </div>
+            </label>
+
+            <span class="text-sm text-slate-500 ml-2">
+                Dark
+            </span>
         </div>
 
         <div class="mb-96"></div>
 
-        <div class="w-full text-center bg-slate-300">
+        <div class="w-full text-center bg-slate-300 dark:bg-slate-900 ">
             <blockquote>
                 <h1 class="text-3xl">“Best practices” don't actually work.</h1>
                 <p class="font-black">-Adam Wathan-</p>
             </blockquote>
         </div>
 
-
-
     </div>
+
+
+<script>
+    const checkbox = document.querySelector('#toggle');
+    const html = document.querySelector('html');
+
+    checkbox.addEventListener('click', function(){
+        checkbox.checked ? html.classList.add('dark') : html.classList.remove('dark');
+    })
+
+</script>
 
 </body>
 </html>
