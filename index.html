@@ -9,8 +9,18 @@
       darkMode: 'class',
       theme: {
         extend: {
-          fontFamily:{
-            inter: 'Inter, sans-serif',
+          fontFamily: {
+            'inter': 'Inter, sans-serif',
+          },
+          animation: {
+            'spin-slow':'spin 3s linear infinite',
+            'goyang':'goyang 1s ease-in-out infinite',
+          },
+          keyframes: {
+            goyang: {
+                '0%, 100%': {transform: 'rotate(-3deg)'},
+                '50%':{transform:'rotate(3deg)'},
+            },
           }
         }
       }
@@ -134,6 +144,16 @@
                 Dark
             </span>
         </div>
+
+        <div class="w-40 h-40 bg-sky-300 mx-auto my-24 hover:scale-125 hover:rotate-45 hover:bg-pink-500 transition hover:translate-x-12"></div>
+
+        <div class="w-40 h-40 mx-auto group">
+            <div class="w-full h-full bg-sky-300 rounded-lg shadow-lg group-hover:rotate-180 origin-top-left transition duration-1000"></div>
+        </div>
+
+        <div class="w-40 h-40 bg-sky-300 mx-auto mt-20 animate-goyang"></div>
+
+        <hr class="my-20 bg-slate-300 p-px border-t-2">
 
         <div class="mb-96"></div>
 
